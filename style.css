@@ -1,9 +1,10 @@
 
     .violeta {
-        font-size: 20px;
+        font-size: 15px;
         font-family: Italic, Helvetica, sans-serif;
         color:rgb(255, 255, 255);
         cursor: pointer;
+        text-align: center;
     }
     .violeta:hover {
         color:green;
@@ -14,11 +15,11 @@
     
 
     .verde {
-        font-size: 20px;
+        font-size: 15px;
         font-family: cursive, Helvetica, sans-serif;
         color:green;
         cursor: pointer;
-        
+        text-align: center;
     }
     .verde:hover {
         color:rgb(38, 0, 255);
@@ -30,10 +31,11 @@
 
 
     .vermelho {
-        font-size: 20px;
+        font-size: 15px;
         font-family: "Times New Roman", Helvetica, sans-serif;
         color:rgb(38, 0, 255);
         cursor: pointer;
+        text-align: center;
     }
     .vermelho:hover {
         color:rgb(255, 255, 255);
