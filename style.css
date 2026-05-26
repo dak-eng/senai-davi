@@ -1,0 +1,36 @@
+
+    .violeta {
+        font-size: 20px;
+        font-family: Italic, Helvetica, sans-serif;
+        color:rgb(255, 255, 255);
+        
+    }
+    .violeta:hover {
+        color:green;
+    }
+    
+
+    .verde {
+        font-size: 20px;
+        font-family: cursive, Helvetica, sans-serif;
+        color:green;
+        
+    }
+    .verde:hover {
+        color:rgb(38, 0, 255);
+    }
+
+
+
+    .vermelho {
+        font-size: 20px;
+        font-family: "Times New Roman", Helvetica, sans-serif;
+        color:rgb(38, 0, 255);
+        
+    }
+    .vermelho:hover {
+        color:rgb(255, 255, 255);
+    }
+#fondo {
+    background-color:rgb(0, 201, 252);
+}
