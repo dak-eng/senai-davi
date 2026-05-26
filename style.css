@@ -3,10 +3,11 @@
         font-size: 20px;
         font-family: Italic, Helvetica, sans-serif;
         color:rgb(255, 255, 255);
-        
+        cursor: pointer;
     }
     .violeta:hover {
         color:green;
+        cursor: pointer;
     }
     
 
@@ -14,10 +15,12 @@
         font-size: 20px;
         font-family: cursive, Helvetica, sans-serif;
         color:green;
+        cursor: pointer;
         
     }
     .verde:hover {
         color:rgb(38, 0, 255);
+        cursor: pointer;
     }
 
 
@@ -26,10 +29,11 @@
         font-size: 20px;
         font-family: "Times New Roman", Helvetica, sans-serif;
         color:rgb(38, 0, 255);
-        
+        cursor: pointer;
     }
     .vermelho:hover {
         color:rgb(255, 255, 255);
+        cursor: pointer;
     }
 #fondo {
     background-color:rgb(0, 201, 252);
