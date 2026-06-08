@@ -1,55 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo da Memória — SENAI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    
-  </head>
-  <body>
-    
-    <header>
-      <h1>🧠 Jogo da Memória de Pokémons</h1>
-      <p>Descubra se você tem o olhar de um mestre Pokémon!</p>
-    </header>
-    
-    <!-- PLACAR -->
-    <div class="placar">
-      <div class="stat">
-    <div class="stat-valor" id="tentativas">0</div>
-    <div class="stat-label">Tentativas</div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo da Memória — Pokémon</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>🧠 Jogo da Memória de Pokémons</h1>
+    <p>Descubra se você tem o olhar de um mestre Pokémon!</p>
+  </header>
+
+  <div class="placar">
+    <div class="stat">
+      <div class="stat-valor" id="tentativas">0</div>
+      <div class="stat-label">Tentativas</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-valor" id="acertos">0</div>
+      <div class="stat-label">Acertos</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-valor" id="tempo">--</div>
+      <div class="stat-label">Tempo</div>
+    </div>
   </div>
-  <div class="stat">
-    <div class="stat-valor" id="acertos">0</div>
-    <div class="stat-label">Acertos</div>
+
+  <div class="progresso-wrap">
+    <div class="progresso-barra" id="progresso"></div>
   </div>
-  <div class="stat">
-    <div class="stat-valor" id="tempo">0s</div>
-    <div class="stat-label">Tempo</div>
+
+  <!-- ============================================================
+       CONTROLES DO JOGO
+       ============================================================ -->
+  <div class="controles">
+    <select id="nivel">
+      <option value="facil">Fácil — 8 pares</option>
+      <option value="medio">Médio — 16 pares</option>
+      <option value="dificil">Difícil — 32 pares</option>
+    </select>
+
+    <button id="btn-iniciar" onclick="iniciarPartida()">▶ Iniciar Jogo</button>
+    <button id="btn-reiniciar" onclick="iniciarPartida()">↺ Novo Jogo</button>
   </div>
-</div>
 
-<!-- BARRA DE PROGRESSO -->
-<div class="progresso-wrap">
-  <div class="progresso-barra" id="progresso"></div>
-</div>
+  <div class="grade" id="grade" role="list"></div>
 
-<!-- GRADE DE CARTAS -->
-<div class="grade" id="grade" role="list" aria-label="Grade de cartas do jogo da memória"></div>
+  <div class="vitoria" id="vitoria">
+    <div class="vitoria-emoji">🏆</div>
+    <h2>Parabéns!</h2>
+    <p id="msg-vitoria">Você completou o jogo!</p>
+  </div>
 
-<!-- MENSAGEM DE VITÓRIA -->
-<div class="vitoria" id="vitoria" role="alert" aria-live="polite">
-  <div class="vitoria-emoji">🏆</div>
-  <h2>Parabéns!</h2>
-  <p id="msg-vitoria">Você completou o jogo!</p>
-</div>
-
-<!-- BOTÃO -->
-<button id="btn-reiniciar" onclick="iniciarJogo()">↺ Novo Jogo</button>
-
-</p>
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
