@@ -41,6 +41,7 @@ let acertos = 0;
 let tentativas = 0;
 let bloqueado = true;
 let jogoIniciado = false;
+let musicaAtivada = true;
 let inicio = null;
 let timerID = null;
 
@@ -49,6 +50,7 @@ let timerID = null;
 // ============================================================
 function iniciarPartida() {
   tocarMusica();
+
   nivelAtual = document.getElementById('nivel').value;
 
   EMOJIS = NIVEIS[nivelAtual];
@@ -66,6 +68,7 @@ function iniciarPartida() {
 // ============================================================
 function iniciarJogo() {
   pararEfeitos();
+
   cartasViradas = [];
   acertos = 0;
   tentativas = 0;
@@ -79,6 +82,7 @@ function iniciarJogo() {
   document.getElementById('vitoria').classList.remove('visivel');
 
   clearInterval(timerID);
+
   inicio = Date.now();
   timerID = setInterval(atualizarTempo, 1000);
 
@@ -88,7 +92,6 @@ function iniciarJogo() {
   const grade = document.getElementById('grade');
   grade.innerHTML = '';
 
-  
   // ============================================================
   //  🧱 AJUSTAR COLUNAS POR NÍVEL
   // ============================================================
@@ -105,7 +108,7 @@ function iniciarJogo() {
   grade.style.gridTemplateColumns =
     `repeat(${colunas}, var(--tamanho-carta))`;
 
-    // ============================================================
+  // ============================================================
   //  🃏 CRIAR CARTAS
   // ============================================================
   embaralhadas.forEach((pokemon, i) => {
@@ -152,15 +155,18 @@ function clicarCarta(carta) {
 
   carta.classList.add('virada');
   carta.setAttribute('aria-label', `Carta: ${carta.dataset.nome}`);
+
   tocarSom('audio-selecionar');
+
   cartasViradas.push(carta);
-  
+
   if (cartasViradas.length < 2) return;
-  
+
   bloqueado = true;
   tentativas++;
+
   atualizarStat('tentativas', tentativas);
-  
+
   const [c1, c2] = cartasViradas;
 
   if (c1.dataset.nome === c2.dataset.nome) {
@@ -168,6 +174,7 @@ function clicarCarta(carta) {
     //  ✅ PAR ENCONTRADO
     // ============================================================
     tocarSom('audio-acerto');
+
     setTimeout(() => {
       c1.classList.add('acertada');
       c2.classList.add('acertada');
@@ -182,18 +189,21 @@ function clicarCarta(carta) {
       bloqueado = false;
 
       acertos++;
+
       atualizarStat('acertos', acertos);
       atualizarProgresso((acertos / TOTAL_PARES) * 100);
-      
+
       if (acertos === TOTAL_PARES) {
         exibirVitoria();
       }
     }, 400);
+
   } else {
     // ============================================================
     //  ❌ NÃO É PAR
     // ============================================================
     tocarSom('audio-erro');
+
     c1.classList.add('errado');
     c2.classList.add('errado');
 
@@ -221,13 +231,13 @@ function atualizarTempo() {
     tempoLimite - tempoDecorrido;
 
   document.getElementById('tempo').textContent =
-  `${tempoRestante}s`;
-  
+    `${tempoRestante}s`;
+
   if (tempoRestante <= 0) {
     clearInterval(timerID);
-    
+
     document.getElementById('tempo').textContent = '0s';
-    
+
     exibirDerrota();
   }
 }
@@ -236,11 +246,9 @@ function atualizarTempo() {
 //  FECHAR MODAL DE VITÓRIA
 // ============================================================
 function fecharVitoria() {
-
-document
-  .getElementById('vitoria')
-  .classList.remove('visivel');
-
+  document
+    .getElementById('vitoria')
+    .classList.remove('visivel');
 }
 
 // ============================================================
@@ -248,8 +256,11 @@ document
 // ============================================================
 function exibirVitoria() {
   pararEfeitos();
+
   document.getElementById('audio-musica-fundo').pause();
+
   tocarSom('audio-vitoria');
+
   clearInterval(timerID);
 
   jogoIniciado = false;
@@ -277,6 +288,7 @@ function exibirVitoria() {
 // ============================================================
 function exibirDerrota() {
   pararEfeitos();
+
   tocarSom('audio-derrota');
 
   jogoIniciado = false;
@@ -294,9 +306,8 @@ function exibirDerrota() {
 }
 
 // ============================================================
-//  AUXILIARES
+//  AUXILIARES — ÁUDIO
 // ============================================================
-
 function pararEfeitos() {
   const efeitos = [
     'audio-vitoria',
@@ -317,30 +328,28 @@ function pararEfeitos() {
 }
 
 function toggleMusica() {
-
   const musica = document.getElementById('audio-musica-fundo');
   const botao = document.getElementById('btn-musica');
 
   if (musica.paused) {
+    musicaAtivada = true;
 
-    musica.play();
+    tocarMusica();
+
     botao.textContent = '🔇 Desligar Música';
-
   } else {
-
     musica.pause();
-    botao.textContent = '🎵 Ligar Música';
 
+    musicaAtivada = false;
+
+    botao.textContent = '🎵 Ligar Música';
   }
 }
 
 function alterarVolume(valor) {
-
-  const musica =
-    document.getElementById('audio-musica-fundo');
+  const musica = document.getElementById('audio-musica-fundo');
 
   musica.volume = valor / 100;
-
 }
 
 function tocarSom(id) {
@@ -353,22 +362,26 @@ function tocarSom(id) {
 }
 
 function tocarMusica() {
+  if (!musicaAtivada) return;
 
-  const musica =
-    document.getElementById('audio-musica-fundo');
+  const musica = document.getElementById('audio-musica-fundo');
+  const botao = document.getElementById('btn-musica');
+  const volume = document.getElementById('volume');
 
-  const botao =
-    document.getElementById('btn-musica');
+  musica.volume = volume ? volume.value / 100 : 0.3;
 
-  musica.volume =
-    document.getElementById('volume').value / 50;
-
-  musica.play().then(() => {
-    botao.textContent = '🔇 Desligar Música';
-  });
-
+  musica.play()
+    .then(() => {
+      botao.textContent = '🔇 Desligar Música';
+    })
+    .catch(() => {
+      botao.textContent = '🎵 Ligar Música';
+    });
 }
 
+// ============================================================
+//  AUXILIARES — JOGO
+// ============================================================
 function embaralhar(arr) {
   const a = [...arr];
 
@@ -396,17 +409,23 @@ function atualizarProgresso(pct) {
   document.getElementById('progresso').style.width = `${pct}%`;
 }
 
+// ============================================================
+//  TENTAR INICIAR MÚSICA AO CARREGAR
+// ============================================================
 window.addEventListener('load', () => {
   const musica = document.getElementById('audio-musica-fundo');
   const botao = document.getElementById('btn-musica');
+  const volume = document.getElementById('volume');
 
-  musica.volume = 0.3;
+  musica.volume = volume ? volume.value / 100 : 0.3;
 
   musica.play()
     .then(() => {
+      musicaAtivada = true;
       botao.textContent = '🔇 Desligar Música';
     })
     .catch(() => {
+      musicaAtivada = false;
       botao.textContent = '🎵 Ligar Música';
     });
 });
