@@ -245,24 +245,40 @@ header p {
 }
 
 /* ============================================================
-   MENSAGEM DE VITÓRIA
+   MENSAGEM DE VITÓRIA / DERROTA — MODAL
    ============================================================ */
 .vitoria {
   display: none;
-  flex-direction: column;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  background: rgba(0, 0, 0, 0.65);
+
   align-items: center;
-  gap: 0.8rem;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.vitoria.visivel {
+  display: flex;
+}
+
+.vitoria-caixa {
   background: var(--cor-painel);
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio-painel);
   padding: 2rem 2.5rem;
   text-align: center;
   animation: escalar 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  max-width: 420px;
+  width: 90%;
 }
 
-.vitoria.visivel { display: flex; }
-
-.vitoria-emoji { font-size: 3.5rem; animation: flutuar 2s ease-in-out infinite; }
+.vitoria-emoji {
+  font-size: 3.5rem;
+  animation: flutuar 2s ease-in-out infinite;
+}
 
 .vitoria h2 {
   font-family: var(--fonte-titulo);
@@ -271,9 +287,31 @@ header p {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  margin-top: 0.5rem;
 }
 
-.vitoria p { font-size: 0.8rem; color: var(--cor-texto-dim); }
+.vitoria p {
+  font-size: 0.8rem;
+  color: var(--cor-texto-dim);
+  margin-top: 1rem;
+}
+
+
+/* ============================================================
+   BOTÕES DA VITÓRIA
+   ============================================================ */
+.botoes-vitoria {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  margin-top: 20px;
+}
+
+.botoes-vitoria button {
+  min-width: 180px;
+}
 
 /* ============================================================
    BOTÃO

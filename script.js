@@ -86,6 +86,7 @@ function iniciarJogo() {
   const grade = document.getElementById('grade');
   grade.innerHTML = '';
 
+  
   // ============================================================
   //  🧱 AJUSTAR COLUNAS POR NÍVEL
   // ============================================================
@@ -102,7 +103,7 @@ function iniciarJogo() {
   grade.style.gridTemplateColumns =
     `repeat(${colunas}, var(--tamanho-carta))`;
 
-  // ============================================================
+    // ============================================================
   //  🃏 CRIAR CARTAS
   // ============================================================
   embaralhadas.forEach((pokemon, i) => {
@@ -151,13 +152,13 @@ function clicarCarta(carta) {
   carta.setAttribute('aria-label', `Carta: ${carta.dataset.nome}`);
 
   cartasViradas.push(carta);
-
+  
   if (cartasViradas.length < 2) return;
-
+  
   bloqueado = true;
   tentativas++;
   atualizarStat('tentativas', tentativas);
-
+  
   const [c1, c2] = cartasViradas;
 
   if (c1.dataset.nome === c2.dataset.nome) {
@@ -180,7 +181,7 @@ function clicarCarta(carta) {
       acertos++;
       atualizarStat('acertos', acertos);
       atualizarProgresso((acertos / TOTAL_PARES) * 100);
-
+      
       if (acertos === TOTAL_PARES) {
         exibirVitoria();
       }
@@ -216,15 +217,26 @@ function atualizarTempo() {
     tempoLimite - tempoDecorrido;
 
   document.getElementById('tempo').textContent =
-    `${tempoRestante}s`;
-
+  `${tempoRestante}s`;
+  
   if (tempoRestante <= 0) {
     clearInterval(timerID);
-
+    
     document.getElementById('tempo').textContent = '0s';
-
+    
     exibirDerrota();
   }
+}
+
+// ============================================================
+//  FECHAR MODAL DE VITÓRIA
+// ============================================================
+function fecharVitoria() {
+
+document
+  .getElementById('vitoria')
+  .classList.remove('visivel');
+
 }
 
 // ============================================================

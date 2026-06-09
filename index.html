@@ -50,11 +50,27 @@
 
   <div class="grade" id="grade" role="list"></div>
 
-  <div class="vitoria" id="vitoria">
+ <div class="vitoria" id="vitoria" role="alert" aria-live="polite">
+  <div class="vitoria-caixa">
     <div class="vitoria-emoji">🏆</div>
-    <h2>Parabéns!</h2>
-    <p id="msg-vitoria">Você completou o jogo!</p>
+    
+
+  <h2>Parabéns!</h2>
+
+  <p id="msg-vitoria">
+    Você completou o jogo!
+  </p>
+
+  <div class="botoes-vitoria">
+    <button onclick="fecharVitoria()">
+      👀 Ver Tabuleiro
+    </button>
+
+    <button onclick="iniciarPartida()">
+      🔄 Jogar Novamente
+    </button>
   </div>
+</div>
 
   <script src="script.js"></script>
 </body>
