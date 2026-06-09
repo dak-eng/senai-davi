@@ -121,21 +121,23 @@ function iniciarJogo() {
 
     carta.dataset.nome = pokemon.nome;
 
-    carta.innerHTML = `
-      <div class="carta-inner">
-        <div class="carta-verso">
-          <span class="icone-verso">✦</span>
-        </div>
+  carta.innerHTML = `
+  <div class="carta-inner">
 
-        <div class="carta-frente" aria-hidden="true">
-          <img 
-            src="${pokemon.img}" 
-            alt="${pokemon.nome}" 
-            class="pokemon-img"
-          >
-        </div>
-      </div>
-    `;
+    <div class="carta-verso">
+      <div class="pokebola-css"></div>
+    </div>
+
+    <div class="carta-frente" aria-hidden="true">
+      <img
+        src="${pokemon.img}"
+        alt="${pokemon.nome}"
+        class="pokemon-img"
+      >
+    </div>
+
+  </div>
+`;
 
     carta.addEventListener('click', () => clicarCarta(carta));
     grade.appendChild(carta);
