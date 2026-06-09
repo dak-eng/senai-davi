@@ -48,6 +48,7 @@ let timerID = null;
 //  ▶ INICIAR PARTIDA
 // ============================================================
 function iniciarPartida() {
+  tocarMusica();
   nivelAtual = document.getElementById('nivel').value;
 
   EMOJIS = NIVEIS[nivelAtual];
@@ -64,6 +65,7 @@ function iniciarPartida() {
 //  INICIALIZAR / REINICIAR JOGO
 // ============================================================
 function iniciarJogo() {
+  pararEfeitos();
   cartasViradas = [];
   acertos = 0;
   tentativas = 0;
@@ -150,7 +152,7 @@ function clicarCarta(carta) {
 
   carta.classList.add('virada');
   carta.setAttribute('aria-label', `Carta: ${carta.dataset.nome}`);
-
+  tocarSom('audio-selecionar');
   cartasViradas.push(carta);
   
   if (cartasViradas.length < 2) return;
@@ -165,6 +167,7 @@ function clicarCarta(carta) {
     // ============================================================
     //  ✅ PAR ENCONTRADO
     // ============================================================
+    tocarSom('audio-acerto');
     setTimeout(() => {
       c1.classList.add('acertada');
       c2.classList.add('acertada');
@@ -190,6 +193,7 @@ function clicarCarta(carta) {
     // ============================================================
     //  ❌ NÃO É PAR
     // ============================================================
+    tocarSom('audio-erro');
     c1.classList.add('errado');
     c2.classList.add('errado');
 
@@ -243,6 +247,9 @@ document
 //  VITÓRIA
 // ============================================================
 function exibirVitoria() {
+  pararEfeitos();
+  document.getElementById('audio-musica-fundo').pause();
+  tocarSom('audio-vitoria');
   clearInterval(timerID);
 
   jogoIniciado = false;
@@ -269,8 +276,13 @@ function exibirVitoria() {
 //  DERROTA
 // ============================================================
 function exibirDerrota() {
+  pararEfeitos();
+  tocarSom('audio-derrota');
+
   jogoIniciado = false;
   bloqueado = true;
+
+  document.getElementById('audio-musica-fundo').pause();
 
   document.querySelector('#vitoria h2').textContent = 'Fim de Jogo';
   document.querySelector('.vitoria-emoji').textContent = '💀';
@@ -284,6 +296,79 @@ function exibirDerrota() {
 // ============================================================
 //  AUXILIARES
 // ============================================================
+
+function pararEfeitos() {
+  const efeitos = [
+    'audio-vitoria',
+    'audio-derrota',
+    'audio-acerto',
+    'audio-erro',
+    'audio-selecionar'
+  ];
+
+  efeitos.forEach(id => {
+    const som = document.getElementById(id);
+
+    if (som) {
+      som.pause();
+      som.currentTime = 0;
+    }
+  });
+}
+
+function toggleMusica() {
+
+  const musica = document.getElementById('audio-musica-fundo');
+  const botao = document.getElementById('btn-musica');
+
+  if (musica.paused) {
+
+    musica.play();
+    botao.textContent = '🔇 Desligar Música';
+
+  } else {
+
+    musica.pause();
+    botao.textContent = '🎵 Ligar Música';
+
+  }
+}
+
+function alterarVolume(valor) {
+
+  const musica =
+    document.getElementById('audio-musica-fundo');
+
+  musica.volume = valor / 100;
+
+}
+
+function tocarSom(id) {
+  const som = document.getElementById(id);
+
+  if (!som) return;
+
+  som.currentTime = 0;
+  som.play();
+}
+
+function tocarMusica() {
+
+  const musica =
+    document.getElementById('audio-musica-fundo');
+
+  const botao =
+    document.getElementById('btn-musica');
+
+  musica.volume =
+    document.getElementById('volume').value / 50;
+
+  musica.play().then(() => {
+    botao.textContent = '🔇 Desligar Música';
+  });
+
+}
+
 function embaralhar(arr) {
   const a = [...arr];
 
@@ -310,6 +395,21 @@ function atualizarStat(id, valor) {
 function atualizarProgresso(pct) {
   document.getElementById('progresso').style.width = `${pct}%`;
 }
+
+window.addEventListener('load', () => {
+  const musica = document.getElementById('audio-musica-fundo');
+  const botao = document.getElementById('btn-musica');
+
+  musica.volume = 0.3;
+
+  musica.play()
+    .then(() => {
+      botao.textContent = '🔇 Desligar Música';
+    })
+    .catch(() => {
+      botao.textContent = '🎵 Ligar Música';
+    });
+});
 
 // ============================================================
 //  AGUARDAR JOGADOR INICIAR

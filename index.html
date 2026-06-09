@@ -35,9 +35,23 @@
   </div>
 
   <!-- ============================================================
-       CONTROLES DO JOGO
-       ============================================================ -->
-  <div class="controles">
+  CONTROLES DO JOGO
+  ============================================================ -->
+    <button id="btn-musica" onclick="toggleMusica()">
+  🔇 Desligar Música
+    </button>
+    <div class="controle-volume">
+  <span>🔊</span>
+  <input
+    type="range"
+    id="volume"
+    min="0"
+    max="100"
+    value="30"
+    oninput="alterarVolume(this.value)"
+  >
+</div>
+       <div class="controles">
     <select id="nivel">
       <option value="facil">Fácil — 8 pares</option>
       <option value="medio">Médio — 16 pares</option>
@@ -70,8 +84,14 @@
       🔄 Jogar Novamente
     </button>
   </div>
+ </div>
 </div>
-
+<audio src="audio/vitoria.mp3" id="audio-vitoria"></audio>
+<audio src="audio/selecionar.mp3" id="audio-selecionar"></audio>
+<audio src="audio/musica_fundo.mp3" id="audio-musica-fundo" loop autoplay></audio>
+<audio src="audio/erro.mp3" id="audio-erro"></audio>
+<audio src="audio/derrota.mp3" id="audio-derrota"></audio>
+<audio src="audio/acerto.mp3" id="audio-acerto"></audio>
   <script src="script.js"></script>
 </body>
 </html>

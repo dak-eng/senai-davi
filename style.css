@@ -1,19 +1,10 @@
 /* ============================================================
-   🎨 VARIÁVEIS — ALTERE AQUI PARA MUDAR O VISUAL DO JOGO
-   ============================================================ */
+🎨 VARIÁVEIS — ALTERE AQUI PARA MUDAR O VISUAL DO JOGO
+============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 :root {
   /* Cores principais */
-  background:
-        linear-gradient(
-            rgba(0,0,0,0.5),
-            rgba(0,0,0,0.5)
-        ),
-        url("image/img.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
- 
-  height: 100vh;
+
   --cor-painel:      #1a1a2e;
   --cor-borda:       #2a2a4a;
 
@@ -36,12 +27,12 @@
   --cor-texto-dim:   #6b6b9a;
 
   /* Tipografia */
-  --fonte-titulo:    fantasy;
+  --fonte-titulo:    'Luckiest Guy', fantasy;
   --fonte-corpo:     'Space Mono', monospace;
 
   /* Tamanhos */
-  --tamanho-carta:   80px;
-  --gap-grade:       12px;
+  --tamanho-carta:   70px;
+  --gap-grade:       10px;
   --raio-carta:      12px;
   --raio-painel:     16px;
 
@@ -56,15 +47,25 @@
 
 body {
   min-height: 100vh;
-  background: var(--cor-fundo);
-  background-image:
-    radial-gradient(ellipse 80% 60% at 20% 10%, #1a0a3e55 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 90%, #001a3e44 0%, transparent 60%);
+
+  background:
+    linear-gradient(
+      rgba(0,0,0,0.5),
+      rgba(0,0,0,0.5)
+    ),
+    url("image/img.jpeg");
+
+  background-repeat: repeat-y;
+  background-size: cover;
+  background-position: top center;
+
   font-family: var(--fonte-corpo);
   color: var(--cor-texto);
+
   display: flex;
   flex-direction: column;
   align-items: center;
+
   padding: 2rem 1rem 3rem;
   gap: 1.5rem;
 }
@@ -77,10 +78,9 @@ header {
   animation: fadeDown 0.6s ease both;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 header h1 {
  
-    font-family:  fantasy;
+    font-family: 'Luckiest Guy', fantasy;
     color: #ffcb05;
 
     text-shadow:
@@ -340,6 +340,28 @@ button:hover {
 button:active { transform: translateY(0); opacity: 0.85; }
 
 /* ============================================================
+   🔊 CONTROLE DE VOLUME
+   ============================================================ */
+.controle-volume {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: var(--cor-painel);
+
+  padding: 10px 15px;
+
+  border-radius: 15px;
+
+  border: 2px solid var(--cor-carta-borda);
+}
+
+#volume {
+  width: 150px;
+  cursor: pointer;
+}
+
+/* ============================================================
    BARRA DE PROGRESSO
    ============================================================ */
 .progresso-wrap {
@@ -504,6 +526,11 @@ button:active { transform: translateY(0); opacity: 0.85; }
   #btn-reiniciar {
     width: 90%;
     max-width: 350px;
+  }
+
+  #btn-musica {
+  width: 90%;
+  max-width: 350px;
   }
 
   /* CARTAS */
