@@ -78,15 +78,16 @@ header {
 }
 
 header h1 {
-  font-family: var(--fonte-titulo);
-  font-size: clamp(1.8rem, 5vw, 2.8rem);
-  font-weight: 800;
-  letter-spacing: -1px;
-  color: var(--cor-carta-borda);
-  background: linear-gradient(12deg, var(--cor-destaque), var(--cor-carta-borda));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+ 
+    font-family: Blippo, fantasy;
+    color: #ffcb05;
+
+    text-shadow:
+        3px 3px 0 #1900ff,
+        3px 3px 0 rgb(0, 0, 0);
+
+    letter-spacing: 2px;
 }
 
 header p {
@@ -279,8 +280,8 @@ button {
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--cor-fundo);
-  background: linear-gradient(135deg, var(--cor-destaque), var(--cor-acerto));
+  color: yellow;
+  background: linear-gradient(20deg, blue, rgb(117, 161, 255));
   border: none;
   border-radius: 50px;
   padding: 0.75rem 2rem;
@@ -310,7 +311,7 @@ button:active { transform: translateY(0); opacity: 0.85; }
 
 .progresso-barra {
   height: 100%;
-  background: linear-gradient(90deg, var(--cor-destaque), var(--cor-acerto));
+  background:linear-gradient(90deg, yellow, blue);
   border-radius: 4px;
   width: 0%;
   transition: width 0.5s ease;
@@ -380,8 +381,8 @@ button:active { transform: translateY(0); opacity: 0.85; }
 }
 
 #btn-iniciar {
-  background: #005ce5;
-  color: #000;
+  background:linear-gradient(20deg, blue, rgb(117, 161, 255));
+  color: #eeff00;
 }
 
 /* ============================================================
