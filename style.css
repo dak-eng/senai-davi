@@ -36,7 +36,7 @@
   --cor-texto-dim:   #6b6b9a;
 
   /* Tipografia */
-  --fonte-titulo:    Blippo, fantasy;
+  --fonte-titulo:    fantasy;
   --fonte-corpo:     'Space Mono', monospace;
 
   /* Tamanhos */
@@ -80,7 +80,7 @@ header {
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 header h1 {
  
-    font-family: Blippo, fantasy;
+    font-family:  fantasy;
     color: #ffcb05;
 
     text-shadow:
